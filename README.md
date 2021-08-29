@@ -6,15 +6,19 @@ Please visit https://www.dean.ngo/ict4e/digital-classroom-box-elimupi/ for more 
 
 ##Introduction 
 
-This version of the ElimuPi build supports: 
-
+This open source version of the ElimuPi build supports: 
 - FDROID Android application store 
-- Web pages for management of the sytem and content management (WordPress) 
 - WiKiPedia alike functions (KiWix) 
 - Kolibri learning system
-- Dynamic content addition through USB storage 
+- Moodle learning system
 - Secured WiFi access point 
 - Local DHCP, DNS 
+
+As part of the DEAN commercial relase (non-open source) 
+- Web pages for management of the system and content management
+- Dynamic content management 
+- Integration into the Elumi family of products (Internet based and mobile applications)
+- Full support and active content development
 
 ## Installation 
 1. Install a base RaspBian image on a SD card and create a empty file called 'ssh' in the root of the boot partition. This will enable SSH access to the Raspberry Pi. After you finished previous steps insert the SD card into the Raspberry Pi
@@ -60,7 +64,7 @@ Then you need to login with the Admin account and go to Manage --> "Please follo
 ##Notes
 **NOTE1**: This install is tested to work with Raspbian OS #1414 SMP Fri Apr 30 13:20:47 BST 2021
 
-**NOTE2*: for WIFI to work on the RaspberryPi 2 unit, you must have the WIFI USB dongle inserted during installation so that the install script can configure it properly. RaspberryPi 3 models have on board WiFi and don't need a WIFI USB dongle. 
+**NOTE2**: for WIFI to work on the RaspberryPi 2 unit, you must have the WIFI USB dongle inserted during installation so that the install script can configure it properly. RaspberryPi 3 and later models have on board WiFi and don't need a WIFI USB dongle. 
 
 **NOTE3**: If using  PUTTY set the setting 'window'->'translation'->'Remote Character Set' to 'use font encoding' to display the lines correctly.
 

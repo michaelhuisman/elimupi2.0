@@ -313,7 +313,7 @@ def install_moodle():
     sudo("sed --in-place \"s/\'pgsql\'\;/\'mariadb\'\;/\" /var/moodle/config.php", "Unable to update moodle configuration database(config.php)")
     sudo("sed --in-place \"s/\'username\'\;/\'elimu\'\;/\" /var/moodle/config.php", "Unable to update moodle configuration username (config.php)")
     sudo("sed --in-place \"s/\'password\'\;/\'elimu\'\;/\" /var/moodle/config.php", "Unable to update moodle configuration password (config.php)")
-    sudo("sed --in-place 's/example.com\/moodle/www.moodle.local/' /var/moodle/config.php", "Unable to update moodle configuration url (config.php)")
+    sudo("sed --in-place 's/example.com\/moodle/moodle.elimupi.online/' /var/moodle/config.php", "Unable to update moodle configuration url (config.php)")
     sudo("sed --in-place 's/\/home\/example\/moodledata/{}\/Content\/moodledata/' /var/moodle/config.php".format(content_prefix_escaped), "Unable to update moodle configuration content (config.php)")
     
     # create moodle data folder on content disk (!)
@@ -524,6 +524,7 @@ def install_citadel():
 def install_fdroid():
     # Install FDROID server components
     sudo("apt-get install fdroidserver -y", "Unable to install FDroid")
+    sudo("ln --symbolic --force /etc/nginx/sites-available/fdroid.local /etc/nginx/sites-enabled/fdroid.local", "Unable to enable file wiki.local (nginx)") # Enable site
     # Enable shared folder for client access
     cp("./files/nginx/fdroid.local", "/etc/nginx/sites-available/", "Unable to copy file fdroid.local (nginx)")
     sudo("systemctl restart nginx", "Unable to restart nginx")
@@ -1066,6 +1067,12 @@ def install_network():
 ############################################
 #    Main code start
 ############################################
+
+# ================================
+# Putty force correct character set for lines
+# ================================
+os.environ["NCURSES_NO_UTF8_ACS"] = "1"
+
 # ================================
 # Construct install data
 # ================================

@@ -15,12 +15,9 @@ https://raspberrypi.stackexchange.com/questions/1367/how-free-is-raspberry-pi
 Debian : Lots of different open licenses, depending on packages
 https://www.debian.org/legal/licenses/
 
-Kahn Academy (lite): MIT
-"The KA Lite sourcecode itself is open-source MIT licensed, and the other included software and content is licensed
-as described in the LICENSE file.  Please note that KA Lite is not officially affiliated with, nor maintained by, Khan
-Academy, but rather makes use of Khan Academy’s open API and Creative Commons content, which may only be
-used for non-commercial purpose"
-https://media.readthedocs.org/pdf/ka-lite/latest/ka-lite.pdf
+Kolibri:
+© Copyright 2021, Learning Equality
+Kolibri is copyrighted by Learning Equality under the MIT License.
 
 Kiwix wiki Offline: License 	GPLv3
 https://en.wikipedia.org/wiki/Kiwix

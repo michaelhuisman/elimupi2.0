@@ -2,5 +2,5 @@
 127.0.0.1 elimupi localhost
 
 # Remote access/shared 
-10.11.0.1 wiki.local files.local khan.local fdroid.local moodle.local www.wiki.local www.files.local www.khan.local www.moodle.local
-
+# Old version : 10.11.0.1 wiki.local files.local khan.local www.fdroid.local fdroid.local moodle.local www.wiki.local www.files.local www.khan.local www.moodle.local elimupi.local www.elimupi.local
+10.11.0.1 www.elimupi.online local.elimupi.online kolibri.elimupi.online fdroid.elimupi.online moodle.elimupi.online files.elimupi.online

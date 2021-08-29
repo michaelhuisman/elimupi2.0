@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 ExecStart=/bin/sh -c '/var/kiwix/bin/kiwix-serve --port 81 /mnt/content/wiki/*.zim'
-WorkingDirectory=/content/wiki
+WorkingDirectory=/mnt/content/wiki
 StandardOutput=inherit
 StandardError=inherit
 Restart=always

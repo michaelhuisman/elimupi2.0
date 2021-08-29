@@ -1,7 +1,7 @@
 server {
-    listen 8080;
-    listen [::]:8080;
-    server_name admin.local www.admin.local;
+    listen 80;
+    listen [::]:80;
+    server_name admin.elimupi.online elimupi.online local.elimupi.online;
     index index.php index.html index.htm;
 	error_log 		/var/www/log/admin-log;
 	
