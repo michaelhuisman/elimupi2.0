@@ -1,0 +1,25 @@
+server {
+	listen 		80;
+	listen 		[::]:80;
+	listen		443 ssl;
+	server_name	moodle.elimupi.online;
+	
+	# SSL settings
+    ssl_certificate     /etc/nginx/certs/elimupi_online.cert.pem;
+    ssl_certificate_key /etc/nginx/certs/elimupi_online.key.pem;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+	root 	/var/moodle;	
+	index 	index.php index.html index.htm;
+
+	location ~ [^/]\.php(/|$) {
+		fastcgi_split_path_info  ^(.+\.php)(/.+)$;
+		fastcgi_index			index.php;
+		fastcgi_pass			 unix:/var/run/php/php7.3-fpm.sock;
+		include				  fastcgi_params;
+		fastcgi_param   PATH_INFO	   $fastcgi_path_info;
+		fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+}
+

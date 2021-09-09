@@ -326,8 +326,8 @@ def install_moodle():
     # cd /path/to/moodle/admin/cli
 
     # Copy moodle site settings
-    cp("files/nginx/moodle.local", "/etc/nginx/sites-available/", "Unable to copy file moodle.local (nginx)")
-    sudo("ln --symbolic --force /etc/nginx/sites-available/moodle.local /etc/nginx/sites-enabled/moodle.local", "Unable to copy file moodle.local (nginx)")
+    cp("files/nginx/moodle.elimupi.online", "/etc/nginx/sites-available/", "Unable to copy file moodle.elimupi.local (nginx)")
+    sudo("ln --symbolic --force /etc/nginx/sites-available/moodle.elimupi.online /etc/nginx/sites-enabled/moodle.elimupi.online", "Unable to copy file moodleelimupi.online (nginx)")
     
     # restart NGINX service 
     sudo("systemctl restart nginx", "Unable to restart nginx")
@@ -337,10 +337,9 @@ def install_moodle():
     sudo("crontab -u www-data /var/moodlesql/cron.txt", "Unable to setup cron for Moodle")
 
     # We don't need to run the install script, as the config.php is already created above.
-    # The local administrator should visit http://www.moodle.local first to setup the admin account, otherwise that account might be hijacked by students.
+    # The local administrator should visit http://www.moodle.elimupi.local first to setup the admin account, otherwise that account might be hijacked by students.
     # sudo("-u www-data /usr/bin/php /var/moodle/admin/cli/install.php", "Unable to install moodle")
 
-    
     # see https://docs.moodle.org/310/en/Installing_Moodle
     #      https://docs.moodle.org/310/en/Administration_via_command_line#Installation
     # Create database (mariadb)
@@ -357,12 +356,15 @@ def install_web_interface():
     display_log("Install PHP extensions...", col_log_ok)
     sudo("apt install php-fpm -y","Unable to install NGINX")
     
+    # Create certificate for 2 years
+    sudo('openssl req -x509 -newkey rsa:4096 -keyout /etc/nginx/certs/elimupi_online.key.pem -out /etc/nginx/certs/elimupi_online.cert.pem -days 730 -nodes -config ./files/nginx/ssl.conf')
+     
     # Install nginx site files
     display_log("Set site ingo...")  
-    cp("./files/nginx/admin.local", "/etc/nginx/sites-available/", "Unable to copy file admin.local (nginx)")
-    cp("./files/nginx/files.local", "/etc/nginx/sites-available/", "Unable to copy file files.local (nginx)")
-    sudo("ln --symbolic --force /etc/nginx/sites-available/admin.local /etc/nginx/sites-enabled/admin.local", "Unable to copy file admin.local (nginx)")
-    sudo("ln --symbolic --force /etc/nginx/sites-available/files.local /etc/nginx/sites-enabled/files.local", "Unable to copy file files.local (nginx)")
+    cp("./files/nginx/admin.elimupi.online", "/etc/nginx/sites-available/", "Unable to copy file admin.elimupi.online (nginx)")
+    cp("./files/nginx/files.elimupi.online", "/etc/nginx/sites-available/", "Unable to copy file files.elimupi.online (nginx)")
+    sudo("ln --symbolic --force /etc/nginx/sites-available/admin.elimupi.online /etc/nginx/sites-enabled/admin.elimupi.online", "Unable to copy file admin.elimupi.online (nginx)")
+    sudo("ln --symbolic --force /etc/nginx/sites-available/files.elimupi.online /etc/nginx/sites-enabled/files.elimupi.online", "Unable to copy file files.elimupi.online (nginx)")
    
     # If folder doesn't exist create   
     if not os.path.exists('/var/www/log'):
@@ -492,9 +494,8 @@ def install_kiwix():
     # PBo 20180312-07 sudo("service kiwix start", "Unable to start the kiwix service.")
     #sudo("sh -c 'echo {} >/etc/kiwix-version'".format(kiwix_version), "Unable to record kiwix version.")
     # setup NGINX site
-    cp("./files/nginx/wiki.local", "/etc/nginx/sites-available/", "Unable to copy file wiki.local (nginx)")
-    # Enable site
-    sudo("ln --symbolic --force /etc/nginx/sites-available/wiki.local /etc/nginx/sites-enabled/wiki.local", "Unable to enable file wiki.local (nginx)")
+    cp("./files/nginx/wiki.elimupi.online", "/etc/nginx/sites-available/", "Unable to copy file wiki.elimupi.online (nginx)")
+    sudo("ln --symbolic --force /etc/nginx/sites-available/wiki.elimupi.online /etc/nginx/sites-enabled/wiki.elimupi.online", "Unable to enable file wiki.elimupi.online (nginx)")
     # restart NGINX service 
     sudo("systemctl restart nginx", "Unable to restart nginx")
     return True
@@ -524,9 +525,10 @@ def install_citadel():
 def install_fdroid():
     # Install FDROID server components
     sudo("apt-get install fdroidserver -y", "Unable to install FDroid")
-    sudo("ln --symbolic --force /etc/nginx/sites-available/fdroid.local /etc/nginx/sites-enabled/fdroid.local", "Unable to enable file wiki.local (nginx)") # Enable site
-    # Enable shared folder for client access
-    cp("./files/nginx/fdroid.local", "/etc/nginx/sites-available/", "Unable to copy file fdroid.local (nginx)")
+    # Setup web site
+    cp("./files/nginx/fdroid.elimupi.online", "/etc/nginx/sites-available/", "Unable to copy file fdroid.elimupi.online (nginx)")
+    sudo("ln --symbolic --force /etc/nginx/sites-available/fdroid.elimupi.online /etc/nginx/sites-enabled/fdroid.elimupi.online", "Unable to enable file fdroid.elimupi.online (nginx)") # Enable site
+    
     sudo("systemctl restart nginx", "Unable to restart nginx")
     return True
 
