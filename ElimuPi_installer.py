@@ -1032,6 +1032,18 @@ def display_log(message, attribute=col_log):
     logwin.refresh(current_y_pos - (logwin_dheight - logwin_posy), 0, logwin_posy  , logwin_posx , logwin_dheight, logwin_dwidth )
 
 # ================================
+# log to file
+# ================================
+def file_log(message):
+    message_string = str(message)
+    with open("/home/pi/elimupi-install-script.log", "a") as log_file:
+        log_file.write("\n") # newline
+        log_file.write(str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"))) # human-readable timestamp with precision in seconds
+        log_file.write(": ")
+        log_file.write(message_string)
+
+
+# ================================
 # Add locales for en_GB and sw_KE to environment
 # ================================
 def install_locales():
