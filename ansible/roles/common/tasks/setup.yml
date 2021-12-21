@@ -3,14 +3,15 @@
     path: /boot/ssh
     state: touch
 
-- name: Set hostname
-  hostname:
-    name: elimupi
-
 - name: Set hostsfile
   copy:
     src: "hosts"
     dest: /etc/hosts
+
+- name: Set hostname
+  hostname:
+    name: elimupi
+
 
 - name: Make content mount dir
   file:

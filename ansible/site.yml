@@ -1,4 +1,9 @@
 ---
+- name: 'Prepare docker pi'
+  hosts: dockerpi
+  become: true
+  roles:
+    - dockerpi
 - name: 'Provision Image'
   hosts: all
   become: true

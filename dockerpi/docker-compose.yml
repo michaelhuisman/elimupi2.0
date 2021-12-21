@@ -1,10 +1,13 @@
 version: "3.0"
 services:
   rpi:
-    image: lukechilds/dockerpi
-    command: pi3
+    image: lukechilds/dockerpi:vm
+    # command: pi3
     volumes:
       - ./sdcard:/sdcard
-      - ./2021-05-07-raspios-buster-armhf.img:/sdcard/filesystem.img
+      - ./images/prepared/filesystem.img:/sdcard/filesystem.img
     sysctls:
       - net.ipv4.ping_group_range=0 2147483647
+    ports:
+      - 5022:5022
+    restart: always

@@ -1,7 +1,8 @@
-images
+dockerpi/images/*.img
 packer-builder-arm-image
 packer_cache
 output*
 pishrink.sh
 .DS_Store
 vagrant/.vagrant
+dockerpi/images/prepared/filesystem.img
