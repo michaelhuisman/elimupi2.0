@@ -4,3 +4,4 @@ packer_cache
 output*
 pishrink.sh
 .DS_Store
+vagrant/.vagrant
