@@ -1,6 +1,6 @@
-- name: Upgrade OS
-  apt:
-    upgrade: dist
+# - name: Upgrade OS
+#   apt:
+#     upgrade: dist
 
 # TODO update rbp firmware on first boot
 

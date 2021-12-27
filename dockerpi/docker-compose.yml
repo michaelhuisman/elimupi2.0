@@ -1,8 +1,8 @@
 version: "3.0"
 services:
-  rpi:
-    image: lukechilds/dockerpi:vm
-    # command: pi3
+  rpi2:
+    image: lukechilds/dockerpi
+    command: pi2
     volumes:
       - ./sdcard:/sdcard
       - ./images/prepared/filesystem.img:/sdcard/filesystem.img
@@ -11,3 +11,30 @@ services:
     ports:
       - 5022:5022
     restart: always
+  rpi3:
+    build:
+      context: ./dockerpi3
+      # args:
+      #   buildno: 1
+    image: dockerpi3:latest
+    command: |
+      -m 4096 -M raspi3b
+      --cpu arm1176
+      -kernel kernel8.img -dtb bcm2710-rpi-3-b-plus.dtb -sd /data/sd.img
+      -append "console=ttyAMA0 root=/dev/mmcblk0p2 rw rootwait rootfstype=ext4"
+      -append "rw earlyprintk loglevel=8 console=ttyAMA0,115200 dwc_otg.lpm_enable=0 root=/dev/mmcblk0p2 rootwait panic=1 dwc_otg.fiq_fsm_enable=0"
+      -nographic
+      --serial mon:stdio
+      --display none
+      --no-reboot
+      -netdev user,id=net0,hostfwd=tcp::5022-:22 -device usb-net,netdev=net0
+    volumes:
+      - data-volume:/data
+    sysctls:
+      - net.ipv4.ping_group_range=0 2147483647
+    ports:
+      - 5022:5022
+    restart: always
+
+volumes:
+  data-volume:

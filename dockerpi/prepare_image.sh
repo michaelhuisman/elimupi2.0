@@ -1,5 +1,5 @@
 #/bin/bash
-set -exv
+set -e
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 MOUNT_DIR="/tmp/mount_tmp_image"
@@ -30,8 +30,8 @@ sudo mount ${OUTPUT_IMAGE} -o offset=$[512*${offset}] ${MOUNT_DIR}
 sudo touch ${MOUNT_DIR}/ssh
 sudo umount ${MOUNT_DIR}
 
-echo "Resize the image to 8GB"
-qemu-img resize ${OUTPUT_IMAGE} 8G
+echo "Resize the image to 6GB"
+# qemu-img resize ${OUTPUT_IMAGE} 6G
 
 echo "Remove ssh fingerprints from ~/.ssh/known_hosts, if exists."
 ssh-keygen -f ~/.ssh/known_hosts -R [127.0.0.1]:5022

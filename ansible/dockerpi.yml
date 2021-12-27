@@ -7,5 +7,6 @@ all:
       ansible_port: 5022
       ansible_host: 127.0.0.1
       ansible_ssh_pass: raspberry
+      # ansible_ssh_pass: elimupi
       ansible_ssh_user: pi
       ansible_ssh_extra_args: '-o StrictHostKeyChecking=no'
